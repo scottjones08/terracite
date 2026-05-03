@@ -71,3 +71,11 @@ export default defineConfig([
   },
 ])
 ```
+
+## ClawSweeper maintenance loop
+
+This repo includes `.github/workflows/clawsweeper-dispatch.yml`, the conservative OpenClaw maintenance bridge:
+
+`issue → @clawsweeper fix/build → guarded PR → review → repair → re-review → automerge`
+
+The workflow forwards compact GitHub activity to `openclaw/clawsweeper` without checking out or executing untrusted PR code. It stays inert unless the repo secret `CLAWSWEEPER_APP_PRIVATE_KEY` is configured for the ClawSweeper GitHub App. Optional repo variable `CLAWSWEEPER_COMMIT_REVIEW_CREATE_CHECKS=true` enables commit-review check runs on `main` pushes.
